@@ -14,11 +14,9 @@ app.get("/", function (req, res) {
   res.send("Hello World!");
 });
 
-app.listen(port, function () {
-  console.log(`App listening on port ${port}!`);
-});
 
-/* index.js code before... */
+
+//Read (GET) -> récupération des pokemons
 app.get("/pokemon/list", function (req, res) {
     //on se connecte à la DB MongoDB
     const dbConnect = dbo.getDb();
@@ -45,11 +43,68 @@ app.get("/pokemon/list", function (req, res) {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+//Create (POST)-> ajout de pokemon dans la collection pokémon
 app.post('/pokemon/insert', jsonParser, (req, res) => {
     const body = req.body;
     console.log('Got body:', body);
-    //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!
     const dbConnect = dbo.getDb();
-    insert({ name: body.name })
-    res.json(body);    
+    dbConnect
+        .collection("Pokemon")
+        .insertOne(body)
+        .then(function (result, err) {
+          if (err) {
+            res.status(400).send("Error!");
+          } else {
+            res.json(result);
+          }
+        });
+    //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
+    res.json(`${body.name} a bien été ajouté`);
+   
+});
+
+
+//Update (POST) -> modification des pokemons 
+app.post('/pokemon/edit', jsonParser, (req, res) => {
+  const body = req.body;
+  console.log('Got body:', body);
+  const dbConnect = dbo.getDb();
+  dbConnect
+      .collection("Pokemon")
+      if (body.name == Pokemon.name) {
+        updateOne(body)
+        res.json(result);
+      } else {
+        res.status(400).send(`${body.name} n'est pas dans le pokedex`);
+      }
+  res.json(`${body.name} a bien été modifié`);
+
+});
+
+
+//Delete (DELETE) -> suppression de pokemons
+app.delete('/pokemon/delete', jsonParser, (req, res) => {
+  const body = req.body;
+  console.log('Got body:', body);
+  const dbConnect = dbo.getDb();
+  dbConnect
+      .collection("Pokemon")
+      .deleteOne(body)
+      .then(function (result, err) {
+        if (err) {
+          res.status(400).send("Error!");
+        } else {
+          res.json(result);
+        }
+      });
+  //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
+  res.json(`${body.name} a bien été suprimé`);
+ 
+});
+
+
+
+
+app.listen(port, function () {
+  console.log(`App listening on port ${port}!`);
 });
