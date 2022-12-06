@@ -65,25 +65,36 @@ app.post('/pokemon/insert', jsonParser, (req, res) => {
 
 
 //Update (POST) -> modification des pokemons 
-app.post('/pokemon/edit', jsonParser, (req, res) => {
+app.post('/pokemon/edit', jsonParser, (req, res) =>{
   const body = req.body;
-  console.log('Got body:', body);
   const dbConnect = dbo.getDb();
   dbConnect
-      .collection("Pokemon")
-      .updateOne(body)
-      .then(function (result, err) {
-        if (err) {
-          res.status(400).send("Error!");
-        } else {
-          res.json(result);
-        }
-      });
-  //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
-  res.json(`${body.name} a bien été modifié`);
- 
-});
+  .collection("Pokemon")
+  .updateOne({
+      name: body.prevname
+  },{
+      $set:{ 
+        name: body.newname,
+        desc: body.newdesc, 
+        img : body.newimg,       
+        type: body.newtype,
+        weakness : body.newweakness,
+        height : body.newheight,
+        weight : body.newweight,
+        gender : body.newgender,
+        category : body.newcategory,
+        abilities : body.newabilities
+      }
+  })
+  .then (function(result,err){
+    if (err) {
+      res.status(400).send("Error!");
+    } else {
+      res.json(result);
+    }
+  })
 
+});
 
 //Delete (DELETE) -> suppression de pokemons
 app.delete('/pokemon/delete', jsonParser, (req, res) => {
