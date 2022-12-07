@@ -83,7 +83,8 @@ app.post('/pokemon/edit', jsonParser, (req, res) =>{
         weight : body.newweight,
         gender : body.newgender,
         category : body.newcategory,
-        abilities : body.newabilities
+        abilities : body.newabilities,
+        num : body.newnum
       }
   })
   .then (function(result,err){

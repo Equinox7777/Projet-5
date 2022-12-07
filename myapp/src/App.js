@@ -22,4 +22,29 @@ function App() {
   );
 }
 
+
+<Router>
+    <Switch>
+      <Route exact path="/"> //ici on met l'URL dans le navigateur
+        <Home /> //ici on donne la page à afficher en fonction de cette URL
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
+    </Switch>
+</Router>
+
+function Menu(){
+  return <nav>
+      <ul>
+          <li><Link to="/">Accueil</Link></li>
+          <li><Link to="/shop">Boutique</Link></li>
+          <li><Link to="/cart">Panier</Link></li>
+      </ul>
+  </nav>
+}
+
 export default App;
