@@ -1,30 +1,23 @@
 const express = require("express");
 const dbo = require("./db/db");
+var cors = require('cors')
 const app = express();
 const port = 4444;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 dbo.connectToServer();
-
-/*
-suite du code ici       node index.js
-*/
-app.get("/", function (req, res) {
-  res.send("Hello World!");
-});
-
+  
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 
 //Read (GET) -> récupération des pokemons
-app.get("/pokemon/list", function (req, res) {
-    //on se connecte à la DB MongoDB
+app.get("/Pokemon/list", function (req, res) {
     const dbConnect = dbo.getDb();
-    //premier test permettant de récupérer mes pokemons !
     dbConnect
       .collection("Pokemon")
-      .find({}) // permet de filtrer les résultats
-      /*.limit(50) // pourrait permettre de limiter le nombre de résultats */
+      .find({})
       .toArray(function (err, result) {
         if (err) {
           res.status(400).send("Error fetching pokemons!");
@@ -32,16 +25,8 @@ app.get("/pokemon/list", function (req, res) {
           res.json(result);
         }
       });
-      /*
-      Bref lisez la doc, 
-      il y a plein de manières de faire ce qu'on veut :) 
-      */
       
-  });
-  
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
+});
 
 //Create (POST)-> ajout de pokemon dans la collection pokémon
 app.post('/pokemon/insert', jsonParser, (req, res) => {
@@ -58,7 +43,7 @@ app.post('/pokemon/insert', jsonParser, (req, res) => {
             res.json(result);
           }
         });
-    //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
+
     res.json(`${body.name} a bien été ajouté`);
    
 });
@@ -71,7 +56,7 @@ app.post('/pokemon/edit', jsonParser, (req, res) =>{
   dbConnect
   .collection("Pokemon")
   .updateOne({
-      name: body.prevname
+      name: body.name
   },{
       $set:{ 
         name: body.newname,
@@ -84,7 +69,7 @@ app.post('/pokemon/edit', jsonParser, (req, res) =>{
         gender : body.newgender,
         category : body.newcategory,
         abilities : body.newabilities,
-        num : body.newnum
+        numero : body.newnum
       }
   })
   .then (function(result,err){
@@ -112,7 +97,7 @@ app.delete('/pokemon/delete', jsonParser, (req, res) => {
           res.json(result);
         }
       });
-  //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
+
   res.json(`${body.name} a bien été suprimé`);
  
 });
@@ -134,7 +119,7 @@ app.post('/pokedex/insert', jsonParser, (req, res) => {
           res.json(result);
         }
       });
-  //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
+
   res.json(`${body.name} a bien été ajouté`);
  
 });
