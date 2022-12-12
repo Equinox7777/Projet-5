@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getInPokedex } from '../api/pokemonadd';
 import { getAll } from '../api/pokemons';
 
-function Home() {
+function PokeUpdate() {
     const [ pokemons, setPokemons ] = useState([]);
 
     //va s'executer seulement au lancement du composant (dep: [])
@@ -21,7 +20,6 @@ function Home() {
             return <div key={key} className="bloc-pokemon">
                 <img className="avatar" src={pokemon.img} alt="pokemon"/>
                 <h2>{pokemon.name}</h2>
-                <button onClick={()=>getInPokedex(pokemon)}>Capturer !</button>
             </div>
             })
         }
@@ -29,4 +27,4 @@ function Home() {
     </div>;
 }
 
-export default Home ;
+export default PokeUpdate ;

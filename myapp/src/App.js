@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import Pokedex from "./pages/Pokedex";
+import PokeUpdate from "./pages/PokeUpdate"
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,8 +16,9 @@ function App(props){
     <Router>
       <div className="center">
         <ul>
-          <Link to="/"><button className="buttonHome left" >Pokemon </button></Link>
-          <Link to="/Pokedex"><button className="buttonHome right" >Pokedex </button></Link>
+          <Link to="/"><button className="button-24 left" >Pokemon </button></Link>
+          <Link to="/Pokedex"><button className="button-24" >Pokedex </button></Link>
+          <Link to="/PokeUpdate"><button className="button-24 right" >Modification Pokemon </button></Link>
         </ul> 
         <Switch>
           <Route exact path="/">
@@ -24,6 +26,9 @@ function App(props){
           </Route>
           <Route path="/Pokedex">
             <Pokedex />
+          </Route>
+          <Route path="/PokeUpdate">
+            <PokeUpdate />
           </Route>
         </Switch>
       </div>

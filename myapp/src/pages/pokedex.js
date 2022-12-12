@@ -11,7 +11,7 @@ function Pokedex() {
             pokemonsFetched
             .then(result => setPokemons(result))
             .catch(error=>console.error("Erreur avec notre API :",error.message));
-    });
+    },[]);
     
     return <div className="pokemon-list">
         <div className="flex">
