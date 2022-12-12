@@ -118,10 +118,8 @@ app.post('/pokedex/insert', jsonParser, (req, res) => {
         } else {
           res.json(result);
         }
-      });
-
-  res.json(`${body.name} a bien été ajouté`);
- 
+      })
+      .catch(err=>res.json(err));
 });
 
 //Read (GET) -> récupération des pokemon du pokédex
@@ -163,3 +161,4 @@ app.delete('/pokedex/delete', jsonParser, (req, res) => {
 app.listen(port, function () {
   console.log(`App listening on port ${port}!`);
 });
+
