@@ -1,6 +1,6 @@
 export const getAll = async () => {
     const response = await fetch(
-        'http://localhost:4444/pokemon/list', {
+        'http://localhost:4444/pokedex/list', {
             method: 'GET', 
             headers: {
                 'Accept': 'application/json', 
@@ -11,4 +11,3 @@ export const getAll = async () => {
     const pokemons = await response.json()
     return pokemons
 }
-

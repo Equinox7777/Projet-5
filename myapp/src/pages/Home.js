@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAll } from '../api/pokemons';
+import "../api/pokemon.css"
 
 function Home() {
     const [ pokemons, setPokemons ] = useState([]);

@@ -13,7 +13,7 @@ app.use(cors())
 
 
 //Read (GET) -> récupération des pokemons
-app.get("/Pokemon/list", function (req, res) {
+app.get("/pokemon/list", function (req, res) {
     const dbConnect = dbo.getDb();
     dbConnect
       .collection("Pokemon")
