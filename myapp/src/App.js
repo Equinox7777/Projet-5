@@ -14,23 +14,26 @@ import "./App.css"
 function App(props){
   return (
     <Router>
-      <div className="center">
-        <ul>
-          <Link to="/"><button className="button-24 left" >Pokemon </button></Link>
-          <Link to="/Pokedex"><button className="button-24" >Pokedex </button></Link>
-          <Link to="/PokeUpdate"><button className="button-24 right" >Modification Pokemon </button></Link>
-        </ul> 
-        <Switch>
-          <Route exact path="/">
-            <Home /> 
-          </Route>
-          <Route path="/Pokedex">
-            <Pokedex />
-          </Route>
-          <Route path="/PokeUpdate">
-            <PokeUpdate />
-          </Route>
-        </Switch>
+      <div className="body">
+        <img src="https://www.pjz.cz/pokedex/nadpis.gif" alt="Pokedex"></img>
+        <div className="center">
+          <ul>
+            <Link to="/"><button className="button-24 left" >Pokemon </button></Link>
+            <Link to="/Pokedex"><button className="button-24" >Pokedex </button></Link>
+            <Link to="/PokeUpdate"><button className="button-24 right" >Modification Pokemon </button></Link>
+          </ul> 
+          <Switch>
+            <Route exact path="/">
+              <Home /> 
+            </Route>
+            <Route path="/Pokedex">
+              <Pokedex />
+            </Route>
+            <Route path="/PokeUpdate">
+              <PokeUpdate />
+            </Route>
+          </Switch>
+        </div>
       </div>
     </Router>
   );

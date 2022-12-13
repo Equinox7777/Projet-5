@@ -24,8 +24,7 @@ app.get("/pokemon/list", function (req, res) {
         } else {
           res.json(result);
         }
-      });
-      
+      })
 });
 
 //Create (POST)-> ajout de pokemon dans la collection pokémon
@@ -42,9 +41,9 @@ app.post('/pokemon/insert', jsonParser, (req, res) => {
           } else {
             res.json(result);
           }
-        });
+        })
+        .catch(err=>res.json(err)); 
 
-    res.json(`${body.name} a bien été ajouté`);
    
 });
 
@@ -79,6 +78,7 @@ app.post('/pokemon/edit', jsonParser, (req, res) =>{
       res.json(result);
     }
   })
+  .catch(err=>res.json(err))
 
 });
 
@@ -96,10 +96,8 @@ app.delete('/pokemon/delete', jsonParser, (req, res) => {
         } else {
           res.json(result);
         }
-      });
-
-  res.json(`${body.name} a bien été suprimé`);
- 
+      })
+      .catch(err=>res.json(err)); 
 });
 
 
@@ -152,9 +150,7 @@ app.delete('/pokedex/delete', jsonParser, (req, res) => {
         } else {
           res.json(result);
         }
-      });
-  //on code ensuite l'insertion dans mongoDB, lisez la doc hehe !!  node index.js
-  res.json(`${body.name} a bien été suprimé`);
+      }).catch(err=>res.json(err));
  
 });
 
