@@ -5,7 +5,6 @@ import "../App.css"
 
 function Home() {
     const [ pokemons, setPokemons ] = useState([]);
-
     //va s'executer seulement au lancement du composant (dep: [])
     useEffect(() => {
         // récupérer la liste des users seulement au chargement du composant ! 
@@ -14,7 +13,7 @@ function Home() {
             .then(result => setPokemons(result))
             .catch(error=>console.error("Erreur avec notre API :",error.message));
     },[]);
-    
+
     return <div className="pokemon-list pokeCountainer">
         <div className='flex'>
         {
@@ -28,14 +27,14 @@ function Home() {
                 <div className='stat'>
                     <h2 className='name'>Stats :</h2>
                     <div className='flex'>
-                        <h3>{pokemon.desc}</h3>
-                        <h3>{pokemon.type}</h3>
-                        <h3>{pokemon.weakness}</h3>
-                        <h3>{pokemon.height}m</h3>
-                        <h3>{pokemon.weight}kg</h3>
-                        <h3>{pokemon.gender}</h3>
-                        <h3>{pokemon.category}</h3>
-                        <h3>{pokemon.abilities}</h3>
+                    <h3> Description : {pokemon.desc}</h3>
+                        <h3>Types : {pokemon.type.join(", ")}</h3>
+                        <h3>Faiblesses : {pokemon.weakness.join(", ")}</h3>
+                        <h3>Taille : {pokemon.height}m</h3>
+                        <h3>Poids : {pokemon.weight}kg</h3>
+                        <h3>Genre : {pokemon.gender.join(", ")}</h3>
+                        <h3>Catégorie : {pokemon.category}</h3>
+                        <h3>Talent : {pokemon.abilities}</h3>
                     </div>
                 </div>
                 <button className='button-85' onClick={()=>getInPokedex(pokemon)}>Capturer !</button>

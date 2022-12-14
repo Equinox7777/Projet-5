@@ -4,6 +4,7 @@ var cors = require('cors')
 const app = express();
 const port = 4444;
 const bodyParser = require('body-parser');
+const { ObjectId } = require("mongodb");
 const jsonParser = bodyParser.json();
 
 dbo.connectToServer();
@@ -89,7 +90,7 @@ app.delete('/pokemon/delete', jsonParser, (req, res) => {
   const dbConnect = dbo.getDb();
   dbConnect
       .collection("Pokemon")
-      .deleteOne(body)
+      .deleteOne({_id:ObjectId(body._id)})
       .then(function (result, err) {
         if (err) {
           res.status(400).send("Error!");

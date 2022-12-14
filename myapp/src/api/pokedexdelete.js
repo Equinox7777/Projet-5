@@ -1,6 +1,6 @@
-export const getOutPokemon = async (pokemon) => {
+export const getOutPokedex = async (pokemon) => {
     const response = await fetch(
-        'http://localhost:4444/pokemon/delete', {
+        'http://localhost:4444/pokedex/delete', {
             method: 'DELETE', 
             headers: {
                 'Accept': 'application/json', 

@@ -17,7 +17,7 @@ function App(props){
       <div className="body">
         <img src="https://www.pjz.cz/pokedex/nadpis.gif" alt="Pokedex"></img>
         <div className="center">
-          <ul>
+            <ul>
             <Link to="/"><button className="button-24 left" >Pokemon </button></Link>
             <Link to="/Pokedex"><button className="button-24" >Pokedex </button></Link>
             <Link to="/PokeUpdate"><button className="button-24 right" >Modification Pokemon </button></Link>

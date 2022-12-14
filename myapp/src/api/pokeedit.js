@@ -1,7 +1,7 @@
-export const getOutPokemon = async (pokemon) => {
+export const editPokemon = async (pokemon) => {
     const response = await fetch(
-        'http://localhost:4444/pokemon/delete', {
-            method: 'DELETE', 
+        'http://localhost:4444/pokemon/edit', {
+            method: 'POST', 
             headers: {
                 'Accept': 'application/json', 
                 'Content-Type':'application/json'

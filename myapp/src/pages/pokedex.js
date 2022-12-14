@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getOutPokedex } from '../api/pokedelete';
+import { getOutPokedex } from '../api/pokedexdelete';
 import { getAll } from '../api/pokecatch';
 import "../App.css"
 
