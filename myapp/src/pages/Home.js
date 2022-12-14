@@ -28,11 +28,11 @@ function Home() {
                     <h2 className='name'>Stats :</h2>
                     <div className='flex'>
                     <h3> Description : {pokemon.desc}</h3>
-                        <h3>Types : {pokemon.type.join(", ")}</h3>
-                        <h3>Faiblesses : {pokemon.weakness.join(", ")}</h3>
+                        <h3>Types : {pokemon.type && pokemon.type.join(", ")}</h3>
+                        <h3>Faiblesses : {pokemon.weakness && pokemon.weakness.join(", ")}</h3>
                         <h3>Taille : {pokemon.height}m</h3>
                         <h3>Poids : {pokemon.weight}kg</h3>
-                        <h3>Genre : {pokemon.gender.join(", ")}</h3>
+                        <h3>Genre : {pokemon.gender && pokemon.gender.join(", ")}</h3>
                         <h3>Catégorie : {pokemon.category}</h3>
                         <h3>Talent : {pokemon.abilities}</h3>
                     </div>
